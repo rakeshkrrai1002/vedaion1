@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navbar Design</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #EBEBEB;
+        }
+
+        .top-bar {
+            background-color: #333;
+            color: #fff;
+            padding: 5px 20px;
+            font-size: 14px;
+        }
+
+        .top-bar a {
+            color: #fff;
+            margin-right: 15px;
+            text-decoration: none;
+        }
+
+        .top-bar a.active {
+            font-weight: bold;
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .navbar .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .navbar .menu {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .navbar .menu a {
+            text-decoration: none;
+            color: #333;
+            font-size: 16px;
+            position: relative;
+        }
+
+        .navbar .menu a:hover {
+            color: red;
+        }
+
+        .navbar .menu a::after {
+            content: '\25BE'; /* Down arrow */
+            font-size: 12px;
+            margin-left: 5px;
+            color: red;
+        }
+
+        .navbar .menu a:last-child::after {
+            content: '';
+        }
+
+        .navbar .icons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .navbar .icons i {
+            font-size: 20px;
+            color: #333;
+            cursor: pointer;
+        }
+
+        .navbar .icons i:hover {
+            color: red;
+        }
+        .hero {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(to right, #0026e6, #000);
+            color: #fff;
+            padding: 40px 20px;
+            position: relative;
+            height: 500px;
+            z-index: -1;
+
+        }
+
+        .hero-text {
+            max-width: 50%;
+        }
+
+        .hero-text h1 {
+            font-size: 48px;
+            margin: 0 0 20px;
+        }
+
+        .hero-text p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin: 0 0 20px;
+        }
+
+        .hero-text a {
+            display: inline-block;
+            margin-right: 15px;
+            padding: 10px 20px;
+            text-decoration: none;
+            color: #fff;
+            background-color: #333;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .hero-text a.secondary {
+            background-color: #fff;
+            color: #333;
+            border: 1px solid #333;
+        }
+
+        .hero-image img {
+            max-width: 90%;
+            height: auto;
+            display: block;
+        }
+
+        .cards {
+            display: flex;
+            justify-content: space-around;
+            background-color: #fff;
+            padding: 20px;
+            width: 80%;
+            margin: 0 auto;
+            /* position: absolute; */
+            top: -40px;
+            /* left: 50%; */
+            /* transform: translateX(-50%); */
+            border-radius: 10px;
+            /* box-shadow: 10px rgba(0, 0, 0, 0.611); */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+            margin-top: -60px;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 10px;
+            /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+            padding: 20px;
+            text-align: center;
+            /* flex: 1; */
+            margin: 0 10px;
+        }
+
+        .card img {
+            width: 40px;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            font-size: 14px;
+            margin: 0;
+        }
+    .offers {
+        background-color: #EBEBEB;
+        padding: 40px 20px;
+        text-align: center;
+    }
+
+    .offers-header h2 {
+        font-size: 24px;
+        margin-bottom: 20px;
+        color: #333;
+    }
+
+    .offers-grid {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .offer-item {
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        padding: 20px;
+        text-align: center;
+        width: 180px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .offer-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .offer-item img {
+        width: 60px;
+        height: auto;
+        margin-bottom: 10px;
+    }
+
+    .offer-item p {
+        font-size: 16px;
+        color: #333;
+        margin: 0;
+        font-weight: bold;
+    }
+    .featured-projects {
+        padding: 40px 20px;
+        background-color: #EBEBEB;
+    }
+
+    .section-header h2 {
+        font-size: 28px;
+        margin-bottom: 30px;
+        text-align: center;
+        color: #333;
+    }
+
+    .project-cards {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .project-card {
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        width: 260px;
+        padding: 20px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s, box-shadow 0.3s;
+        text-align: center;
+    }
+
+    .project-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .card-header {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-bottom: 15px;
+    }
+
+    .badge {
+        font-size: 12px;
+        background: #efefef;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 3px 8px;
+        color: #333;
+    }
+
+    .project-card img {
+        width: 120px;
+        height: auto;
+        margin-bottom: 15px;
+    }
+
+    .project-card h3 {
+        font-size: 18px;
+        margin-bottom: 10px;
+        color: #333;
+    }
+
+    .description {
+        font-size: 16px;
+        color: #000;
+        margin-bottom: 5px;
+    }
+
+    .description .original-description {
+        text-decoration: line-through;
+        color: #888;
+        font-size: 14px;
+        margin-left: 5px;
+    }
+
+    .details {
+        font-size: 12px;
+        color: #666;
+        margin-bottom: 20px;
+    }
+
+    .card-footer {
+        background: #f7f7f7;
+        padding: 10px;
+        border-top: 1px solid #ddd;
+        border-radius: 0 0 10px 10px;
+    }
+
+    .card-footer p {
+        font-size: 12px;
+        color: #333;
+        margin: 0;
+    }
+    .offer-section {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            gap: 20px;
+            background-color: #EBEBEB;
+        }
+
+        .offer-card {
+            flex: 1;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .offer-card img {
+            width: 100%;
+            height: auto;
+        }
+
+        .offer-content {
+            padding: 15px;
+        }
+
+        .offer-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin: 0 0 10px;
+        }
+
+        .offer-description {
+            font-size: 14px;
+            color: black;
+            margin-bottom: 15px;
+        }
+
+        
+
+        .offer-link {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 15px;
+            color: #fff;
+            background-color: #e60000;
+            text-decoration: none;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .offer-link:hover {
+            background-color: #cc0000;
+        }
+        .footer {
+  background-color: #333;
+  color: #fff;
+  padding: 40px 20px;
+  font-family: Arial, sans-serif;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-section {
+  flex: 1 1 calc(25% - 20px);
+  margin: 10px;
+}
+
+.footer-section h4 {
+  font-size: 18px;
+  margin-bottom: 15px;
+  color: #e50914;
+}
+
+.footer-section p {
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+
+.footer-section a {
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer-section a:hover {
+  color: #e50914;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-section ul li {
+  margin: 5px 0;
+}
+
+.footer-section ul li a {
+  font-size: 14px;
+}
+
+.social-media .social-link {
+  display: inline-block;
+  margin: 5px 10px 0 0;
+  background: #444;
+  color: #fff;
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-size: 14px;
+  transition: background 0.3s;
+}
+
+.social-media .social-link:hover {
+  background: #e50914;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 12px;
+  border-top: 1px solid #444;
+  padding-top: 10px;
+}
+a{
+    text-decoration: none;
+}
+
+    </style>
+</head>
+<body>
+    <!-- <div class="top-bar">
+        <a href="details.html">Expanded network</a>
+        <a href="details.html" class="active">Personal</a>
+        <a href="details.html">Business</a>
+    </div> -->
+    <div class="navbar">
+        <div class="logo">
+            <img src="https://cdn.vectorstock.com/i/500p/15/51/study-travel-logo-design-template-education-vector-53971551.jpg" alt="Logo">
+        </div>
+        <div class="menu">
+            <a href="index.html">Home</a>
+            <a href="index.html">Courses</a>
+            <a href="index.html">about</a>
+            <a href="index.html">Support</a>
+            <a href="index.html">Network</a>
+        </div>
+        <div class="icons">
+            <i class="cart-icon">&#128722;</i>
+            <i class="search-icon">&#128269;</i>
+            <i class="user-icon">&#128100;</i>
+        </div>
+    </div>
+    <div>
+        <section class="hero">
+            <div class="hero-text">
+                <h1>Transforming Ideas into Intelligent Solutions. </h1>
+                <p>Your Partner in AI-Driven Success.</p>
+                <!-- <p><small>lorem5 <a href="details.html">T&C apply</a>.</small></p> -->
+                <a href="details.html">Login</a>
+                <a href="details.html" class="secondary">Sign up</a>
+            </div>
+            <div class="hero-image">
+                <img src="ai3.png" alt="Galaxy S25 Ultra">
+            </div>
+        </section>
+        <section class="cards">
+            <div class="card">
+                <img src="	https://www.vodafone.com.au/images/icons/my-vodafone-red.svg" alt="Manage your account">
+                <p>AI Consulting</p>
+            </div>
+            <div class="card">
+                <img src="https://www.vodafone.com.au/images/icons/upgrade-red.svg" alt="Upgrade your device or plan">
+                <p>Custom AI Solutions</p>
+            </div>
+            <div class="card">
+                <img src="	https://www.vodafone.com.au/images/icons/connected-devices-red.svg" alt="Get another device or plan">
+                <p>AI Tools and Software</p>
+            </div>
+            <div class="card">
+                <img src="	https://www.vodafone.com.au/images/icons/top-up-red.svg" alt="Recharge your prepaid service">
+                <p>AI Workshops</p>
+            </div>
+        </section>
+    </div>
+    <section class="offers">
+        <div class="offers-header">
+            <h2>Products and Services</h2>
+        </div>
+        <div class="offers-grid">
+            <a href="details.html">
+            <div class="offer-item">
+                <img src="ai10.png" alt="AI Consulting">
+                <p>AI Consulting</p>
+            </div>
+            </a>
+            <a href="details.html">
+            <div class="offer-item">
+                <img src="ai11.png" alt="Custom AI Solutions">
+                <p>Custom AI Solutions</p>
+            </div>
+            </a>
+            <a href="details.html">
+            <div class="offer-item">
+                <img src="ai13.png" alt="AI Tools and Software">
+                <p>AI Tools and Software</p>
+            </div>
+            </a>
+            <a href="details.html">
+            <div class="offer-item">
+                <img src="ai10.png" alt="AI Workshops">
+                <p>AI Workshops</p>
+            </div>
+            </a>
+            <!-- <div class="offer-item">
+                <img src="https://www.vodafone.com.au/images/icons/quicklinksSimonly.png" alt="nbn & Internet">
+                <p>web development</p>
+            </div> -->
+        </div>
+    </section>
+    <section class="featured-projects">
+        <div class="section-header">
+            <h2>My Featured Projects</h2>
+        </div>
+         <a href="details.html">
+            <div class="project-cards">
+                <div class="project-card">
+                    <div class="card-header">
+                        <span class="badge">Responsive</span>
+                        <span class="badge">5-Star Feedback</span>
+                    </div>
+                    <img src="https://www.naukri.com/web-stories/images/ai-impact/img1.webp" alt="Project Preview">
+                    <h3>Portfolio Website Redesign</h3>
+                    <p class="description">
+                        <strong>Completed:</strong> January 2025
+                    </p>
+                    <p class="details">A sleek, responsive redesign of my personal portfolio, showcasing my web development and UX design skills.</p>
+                </div>
+            </a>
+            <a href="details.html">
+            <div class="project-cards">
+                <div class="project-card">
+                    <div class="card-header">
+                        <span class="badge">Responsive</span>
+                        <span class="badge">5-Star Feedback</span>
+                    </div>
+                    <img src="https://www.naukri.com/web-stories/images/ai-impact/img1.webp" alt="Project Preview">
+                    <h3>Portfolio Website Redesign</h3>
+                    <p class="description">
+                        <strong>Completed:</strong> January 2025
+                    </p>
+                    <p class="details">A sleek, responsive redesign of my personal portfolio, showcasing my web development and UX design skills.</p>
+                </div>
+            </a>
+            <a href="details.html">
+                <div class="project-cards">
+                    <div class="project-card">
+                        <div class="card-header">
+                            <span class="badge">Responsive</span>
+                            <span class="badge">5-Star Feedback</span>
+                        </div>
+                        <img src="https://www.naukri.com/web-stories/images/ai-impact/img1.webp" alt="Project Preview">
+                        <h3>Portfolio Website Redesign</h3>
+                        <p class="description">
+                            <strong>Completed:</strong> January 2025
+                        </p>
+                        <p class="details">A sleek, responsive redesign of my personal portfolio, showcasing my web development and UX design skills.</p>
+                    </div>
+                </a>
+                <a href="details.html">
+                    <div class="project-cards">
+                        <div class="project-card">
+                            <div class="card-header">
+                                <span class="badge">Responsive</span>
+                                <span class="badge">5-Star Feedback</span>
+                            </div>
+                            <img src="https://www.naukri.com/web-stories/images/ai-impact/img1.webp" alt="Project Preview">
+                            <h3>Portfolio Website Redesign</h3>
+                            <p class="description">
+                                <strong>Completed:</strong> January 2025
+                            </p>
+                            <p class="details">A sleek, responsive redesign of my personal portfolio, showcasing my web development and UX design skills.</p>
+                            
+                        </div>
+                    </a>
+        </div>
+    </section>
+    
+
+ <section class="offer-section">
+    <div class="offer-card">
+        <img src="https://wallpapers.com/images/hd/ai-pictures-1600-x-900-sf6dlq7y9q16055s.jpg" alt="Portfolio Project 1">
+        <div class="offer-content">
+            <h2 class="offer-title">Portfolio Redesign - 2025</h2>
+            <p class="offer-description">A complete redesign of my personal portfolio with a focus on responsive design, user experience, and modern aesthetics. This project demonstrates my ability to create visually appealing and highly functional web interfaces.</p>
+        </div>
+        <div>
+            <a href="details.html" class="offer-link">View Project</a>
+        </div>
+    </div>
+
+
+    <div class="offer-card">
+        <img src="https://c4.wallpaperflare.com/wallpaper/491/443/644/artificial-intelligence-binary-circle-digital-art-wallpaper-preview.jpg" alt="Portfolio Project 3">
+        <div class="offer-content">
+            <h2 class="offer-title">Team Collaboration Tool</h2>
+            <p class="offer-description">Built a real-time collaboration tool for teams, featuring task management, messaging, and file sharing. This project showcases my expertise in building scalable web applications with real-time functionality.</p>
+        </div>
+        <div>
+            <a href="details.html" class="offer-link">View Project</a>
+        </div>
+    </div>
+    <div class="offer-card">
+        <img src="https://c0.wallpaperflare.com/preview/570/38/521/artificial-intelligence-technology-futuristic-science.jpg" alt="Portfolio Project 3">
+        <div class="offer-content">
+            <h2 class="offer-title">Team Collaboration Tool</h2>
+            <p class="offer-description">Built a real-time collaboration tool for teams, featuring task management, messaging, and file sharing. This project showcases my expertise in building scalable web applications with real-time functionality.</p>
+        </div>
+        <div>
+            <a href="details.html" class="offer-link">View Project</a>
+        </div>
+    </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-section">
+      <h4>About Us</h4>
+      <p>
+        We are dedicated to providing the best mobile plans and offers to meet your needs. Explore our deals and stay connected.
+      </p>
+    </div>
+    <div class="footer-section">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="details.html">Home</a></li>
+        <li><a href="details.html">Plans</a></li>
+        <li><a href="details.html">Offers</a></li>
+        <li><a href="details.html">Support</a></li>
+      </ul>
+    </div>
+    <div class="footer-section">
+      <h4>Contact Us</h4>
+      <p>Email: <a href="mailto:support@example.com">support@example.com</a></p>
+      <p>Phone: <a href="tel:+123456789">+123 456 789</a></p>
+      <p>Address: 123 Mobile Lane, Tech City</p>
+    </div>
+    <div class="footer-section social-media">
+      <h4>Follow Us</h4>
+      <a href="details.html" class="social-link">Facebook</a>
+      <a href="details.html" class="social-link">Twitter</a>
+      <a href="details.html" class="social-link">Instagram</a>
+      <a href="details.html" class="social-link">LinkedIn</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2025 Your Company Name. All Rights Reserved.</p>
+  </div>
+</footer>
+
+
+    
+</body>
+</html>
