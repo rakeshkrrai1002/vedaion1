@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Navbar Design</title>
+    
     <style>
         body {
             margin: 0;
@@ -141,44 +142,44 @@
         }
 
         .cards {
-            display: flex;
-            justify-content: space-around;
-            background-color: #fff;
-            padding: 3px;
-            width: 80%;
-            margin: 0 auto;
-            /* position: absolute; */
-            top: -40px;
-            /* left: 50%; */
-            /* transform: translateX(-50%); */
-            border-radius: 10px;
-            /* box-shadow: 10px rgba(0, 0, 0, 0.611); */
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            margin-top: -60px;
-        }
-
-      .card {
-               background: #fff;
-    /* border-radius: 10px; */
-    /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); */
-    /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); */
-            padding: 20px;
-            text-align: center;
-            /* flex: 1; */
-            border-left: 1px solid black;
-            width: 25%;
-            margin: 0px;
+    display: flex;
+    justify-content: space-around;
+    background-color: #fff;
+    padding: 3px;
+    width: 80%;
+    margin: 0 auto;
+    top: -40px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-top: -60px;
+    /* flex-wrap: wrap; */
 }
 
-        .card img {
-            width: 40px;
-            margin-bottom: 10px;
-        }
+.card {
+    background: #fff;
+    padding: 20px;
+    text-align: center;
+    border-left: 1px solid black;
+    width: 25%; /* Default width */
+    margin: 0px;
+}
 
-        .card p {
-            font-size: 14px;
-            margin: 0;
-        }
+.card:first-child {
+    border-left: none; /* Remove border for the first card */
+}
+
+.card img {
+    width: 40px;
+    margin-bottom: 10px;
+}
+
+.card p {
+    font-size: 14px;
+    margin: 0;
+}
+
+/* Media Queries for Responsiveness */
+
     .offers {
         background-color: #EBEBEB;
         padding: 40px 20px;
@@ -227,86 +228,140 @@
         font-weight: bold;
     }
     .featured-projects {
-        padding: 40px 20px;
-        background-color: #EBEBEB;
-    }
+    padding: 40px 20px;
+    background-color: #EBEBEB;
+}
 
-    .section-header h2 {
-        font-size: 28px;
-        margin-bottom: 30px;
-        text-align: center;
-        color: #333;
-    }
+.section-header h2 {
+    font-size: 28px;
+    margin-bottom: 30px;
+    text-align: center;
+    color: #333;
+}
 
+.project-cards {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; /* Allow wrapping for smaller screens */
+    gap: 20px;
+}
+
+.project-card {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    width: 260px; /* Default width for larger screens */
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    text-align: center;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.card-header {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.badge {
+    font-size: 12px;
+    background: #efefef;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 3px 8px;
+    color: #333;
+}
+
+.project-card img {
+    width: 120px;
+    height: auto;
+    margin-bottom: 15px;
+}
+
+.project-card h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.description {
+    font-size: 16px;
+    color: #000;
+    margin-bottom: 5px;
+}
+
+.description .original-description {
+    text-decoration: line-through;
+    color: #888;
+    font-size: 14px;
+    margin-left: 5px;
+}
+
+.details {
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+/* Media Queries for Responsiveness */
+@media screen and (max-width: 1024px) {
     .project-cards {
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 20px;
+        gap: 15px; /* Reduce gap between cards */
     }
 
     .project-card {
-        background: #fff;
-        border: 1px solid #ddd;
-        border-radius: 10px;
-        width: 260px;
-        padding: 20px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        transition: transform 0.3s, box-shadow 0.3s;
-        text-align: center;
+        width: 220px; /* Slightly narrower cards for medium screens */
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .section-header h2 {
+        font-size: 24px; /* Adjust heading size */
     }
 
-    .project-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    }
-
-    .card-header {
-        display: flex;
-        justify-content: center;
-        gap: 10px;
-        margin-bottom: 15px;
-    }
-
-    .badge {
-        font-size: 12px;
-        background: #efefef;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        padding: 3px 8px;
-        color: #333;
+    .project-card {
+        width: 45%; /* Adjust width to fit two cards per row */
+        margin: 0 auto; /* Center cards on smaller screens */
     }
 
     .project-card img {
-        width: 120px;
-        height: auto;
-        margin-bottom: 15px;
+        width: 100px; /* Reduce image size */
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .section-header h2 {
+        font-size: 20px; /* Smaller heading size for very small screens */
+    }
+
+    .project-card {
+        width: 90%; /* Full width for single column layout */
+        padding: 15px; /* Reduce padding for better fit */
+    }
+
+    .project-card img {
+        width: 80px; /* Smaller images */
     }
 
     .project-card h3 {
-        font-size: 18px;
-        margin-bottom: 10px;
-        color: #333;
+        font-size: 16px; /* Reduce title font size */
     }
 
     .description {
-        font-size: 16px;
-        color: #000;
-        margin-bottom: 5px;
-    }
-
-    .description .original-description {
-        text-decoration: line-through;
-        color: #888;
-        font-size: 14px;
-        margin-left: 5px;
+        font-size: 14px; /* Adjust text size */
     }
 
     .details {
-        font-size: 12px;
-        color: #666;
-        margin-bottom: 20px;
+        font-size: 10px; /* Smaller details text */
     }
+}
+
 
     .card-footer {
         background: #f7f7f7;
@@ -455,6 +510,51 @@ a{
     text-decoration: none;
 }
 
+@media screen and (max-width: 1024px) {
+    .cards {
+        width: 90%; /* Slightly larger width for medium screens */
+    }
+
+    .card {
+        width: 30%; /* Adjust card width */
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .cards {
+        flex-direction: column; /* Stack cards vertically */
+        /* width: 100%;  */
+    }
+
+    .card {
+        width: 80%;
+        margin: 10px auto; /* Center align the cards */
+        border-left: 0px;
+        border-top: 1px solid black;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .cards {
+        padding: 10px; /* Reduce padding for very small screens */
+    }
+
+    .card {
+        padding: 15px;
+        border-left: 0px;
+        border-top: 1px solid black;
+    }
+
+    .card img {
+        width: 30px; /* Scale down images */
+    }
+
+    .card p {
+        font-size: 12px; /* Reduce font size */
+    }
+}
+
+
     </style>
 </head>
 <body>
@@ -575,7 +675,6 @@ a{
                 </div>
             </a>
             <a href="details.html">
-            <div class="project-cards">
                 <div class="project-card">
                     <div class="card-header">
                         <span class="badge">Responsive</span>
@@ -620,7 +719,6 @@ a{
                             
                         </div>
                     </a>
-        </div>
     </section>
     
 
