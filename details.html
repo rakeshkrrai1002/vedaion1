@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product Page</title>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
+
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -13,162 +15,319 @@
             background-color: #f9f9f9;
         }
         .navbar {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 10px 20px;
-            border-bottom: 1px solid #ccc;
-        }
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    border-bottom: 1px solid #ccc;
+    flex-wrap: wrap; /* Allow wrapping for smaller screens */
+}
 
-        .navbar .logo {
-            display: flex;
-            align-items: center;
-        }
+.navbar .logo {
+    display: flex;
+    align-items: center;
+}
 
-        .navbar .logo img {
-            height: 40px;
-            margin-right: 10px;
-        }
+.navbar .logo img {
+    height: 40px;
+    margin-right: 10px;
+}
 
-        .navbar .menu {
-            display: flex;
-            gap: 20px;
-            align-items: center;
-        }
+.navbar .menu {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
 
-        .navbar .menu a {
-            text-decoration: none;
-            color: #333;
-            font-size: 16px;
-            position: relative;
-        }
+.navbar .menu a {
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+    position: relative;
+}
 
-        .navbar .menu a:hover {
-            color: red;
-        }
+.navbar .menu a:hover {
+    color: red;
+}
 
-        .navbar .menu a::after {
-            content: '\25BE'; /* Down arrow */
-            font-size: 12px;
-            margin-left: 5px;
-            color: red;
-        }
+/* .navbar .menu a::after {
+    content: '\25BE';
+    font-size: 12px;
+    margin-left: 5px;
+    color: red;
+} */
 
-        .navbar .menu a:last-child::after {
-            content: '';
-        }
+.navbar .menu a:last-child::after {
+    content: '';
+}
 
-        .navbar .icons {
-            display: flex;
-            gap: 20px;
-        }
+.navbar .icons {
+    display: flex;
+    gap: 20px;
+}
 
-        .navbar .icons i {
-            font-size: 20px;
-            color: #333;
-            cursor: pointer;
-        }
+.navbar .icons i {
+    font-size: 20px;
+    color: #333;
+    cursor: pointer;
+}
 
-        .navbar .icons i:hover {
-            color: red;
-        }
-        main{
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin-bottom: 25px;
-        }
+.navbar .icons i:hover {
+    color: red;
+}
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
+.dropdown_menu {
+    display: none; /* Hide dropdown menu by default */
+    position: relative;
+}
 
-        .product-image {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+#burger-menu {
+    font-size: 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #333;
+}
+.dropdown-content {
+    display: none; /* Initially hide dropdown content */
+    position: absolute;
+    top: 40px;
+    right: 0; /* Align the dropdown to the right edge */
+    background: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    flex-direction: column;
+    width: max-content; /* Ensure the dropdown content doesn't overflow */
+    max-width: 90vw; /* Prevent the dropdown from exceeding viewport width */
+    overflow-x: auto; /* Add horizontal scroll if needed */
+}
 
-        .product-image img {
-            width: 100%;
-            max-width: 400px;
-            border-radius: 5px;
-        }
+.dropdown-content a {
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #333;
+    display: block;
+}
 
-        .product-preview {
-            display: flex;
-            gap: 10px;
-            margin-top: 10px;
-            align-items: center;
-            justify-content: center;
-        }
+.dropdown-content a:hover {
+    background: #f5f5f5;
+    color: red;
+}
 
-        .product-preview img {
-            width: 60px;
-            height: 60px;
-            object-fit: cover;
-            cursor: pointer;
-            border: 2px solid transparent;
-            border-radius: 5px;
-        }
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: row; /* Stack navbar items vertically */
+        align-items: flex-start; /* Align items to the left */
+    }
 
-        .product-preview img.active {
-            border-color: teal;
-        }
+    .navbar .menu {
+        flex-direction: column; /* Stack menu links vertically */
+        gap: 10px;
+        width: 100%; /* Take full width */
+        margin-top: 10px;
+    }
 
-        .product-details {
-            flex: 1;
-        }
+    .navbar .menu a {
+        font-size: 14px; /* Adjust font size for smaller screens */
+        padding: 20px;
+    }
 
-        .product-details h1 {
-            font-size: 24px;
-            margin: 0 0 10px;
-        }
+    .navbar .icons {
+        margin-top: 10px;
+    }
+    .navbar .menu {
+        display: none; /* Hide standard menu on smaller screens */
+    }
 
-        .product-details .brand {
-            font-size: 18px;
-            color: #555;
-            margin-bottom: 10px;
-        }
+    .dropdown_menu {
+        display: flex; /* Show dropdown menu */
+    }
 
-        .product-details .price {
-            font-size: 20px;
-            color: #2e8b57;
-            font-weight: bold;
-            margin-bottom: 15px;
-        }
+    .dropdown-content {
+        right: 0; /* Keep aligned to the right */
+        left: auto; /* Override any left alignment */
+        width: 330%; /* Take 90% of the screen width */
+    }
+}
 
-        .product-details .description {
-            font-size: 16px;
-            color: #555;
-            margin-bottom: 20px;
-        }
+@media (max-width: 480px) {
+    .navbar .logo img {
+        height: 30px; /* Reduce logo size on smaller screens */
+    }
 
-        .product-details .add-to-cart {
-            background-color: teal;
-            color: #fff;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-        }
+    .navbar .menu a {
+        font-size: 12px; /* Further reduce font size */
+    }
 
-        .product-details .add-to-cart:hover {
-            background-color: #005f5f;
-        }
-        .product-description {
-    max-width: 90%;
-    margin: 30px auto;
+    .navbar .icons i {
+        font-size: 18px; /* Adjust icon size */
+    }
+    .menu {
+        display: none; /* Hide standard menu on smaller screens */
+    }
+
+    .dropdown_menu {
+        display: flex; /* Show dropdown menu */
+    }
+
+    .dropdown-content {
+        width: 330%; /* Full width for dropdown content */
+    }
+}
+
+
+main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.product-image {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.product-image img {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 5px;
+}
+
+.product-preview {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap; /* Wrap preview images for smaller screens */
+}
+
+.product-preview img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    cursor: pointer;
+    border: 2px solid transparent;
+    border-radius: 5px;
+}
+
+.product-preview img.active {
+    border-color: teal;
+}
+
+.product-details {
+    margin: 7px;
+}
+
+.product-details h1 {
+    font-size: 24px;
+    margin: 0 0 10px;
+}
+
+.product-details .brand {
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.product-details .price {
+    font-size: 20px;
+    color: #2e8b57;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.product-details .description {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.product-details .add-to-cart {
+    background-color: teal;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.product-details .add-to-cart:hover {
+    background-color: #005f5f;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    main {
+        grid-template-columns: 1fr; /* Stack product image and details vertically */
+    }
+
+    .product-image img {
+        max-width: 100%; /* Ensure the image resizes on smaller screens */
+    }
+
+    .product-preview img {
+        width: 50px; /* Adjust preview image size for smaller screens */
+        height: 50px;
+    }
+
+    .product-details h1 {
+        font-size: 20px; /* Adjust font size for smaller screens */
+    }
+
+    .product-details .price {
+        font-size: 18px; /* Adjust price font size */
+    }
+
+    .product-details .description {
+        font-size: 14px; /* Adjust description font size */
+    }
+}
+
+@media (max-width: 480px) {
+    .product-details h1 {
+        font-size: 18px; /* Further adjust font size for very small screens */
+    }
+
+    .product-preview img {
+        width: 40px; /* Make preview images smaller */
+        height: 40px;
+    }
+    .product-details {
+        margin: 5px;
+    }
+
+    .product-details .description {
+        font-size: 13px;
+    }
+
+    .product-details .add-to-cart {
+        font-size: 14px;
+        padding: 8px 15px; /* Reduce button padding */
+    }
+}
+
+        .product-description {
+    /* max-width: 90%; */
+    /* margin: 30px auto; */
+    padding: 20px 0px;
     background: #fff;
     border-radius: 8px;
+    margin : 0px 7px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -218,7 +377,7 @@
     background: #f9f9f9;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    margin: 20px 0;
+    /* margin: 20px 0; */
     text-align: center;
 }
 
@@ -235,6 +394,7 @@
     scroll-behavior: smooth; /* Smooth scrolling */
     position: relative; /* For optional navigation buttons */
     width: 100%;
+    /* margin: 5px; */
 }
 
 .reviews-carousel blockquote {
@@ -247,7 +407,8 @@
     font-style: italic;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     text-align: center;
-    margin: 0;
+    margin: 7px;
+    height: 150px;
 }
 
 .reviews-carousel blockquote:hover {
@@ -381,50 +542,55 @@
         <div class="logo">
             <img src="https://cdn.vectorstock.com/i/500p/15/51/study-travel-logo-design-template-education-vector-53971551.jpg" alt="Logo">
         </div>
-        <div class="menu">
-            <a href="#">Home</a>
-            <a href="#">Courses</a>
-            <a href="#">about</a>
-            <a href="#">Support</a>
-            <a href="#">Network</a>
+        <div class="dropdown_menu">
+            <button id="burger-menu">&#9776;</button>
+            <div class="dropdown-content">
+                <a href="index.html">Home</a>
+                <a href="index.html">Courses</a>
+                <a href="index.html">About</a>
+                <a href="index.html">Support</a>
+                <a href="index.html">Network</a>
+            </div>
         </div>
-        <div class="icons">
-            <i class="cart-icon">&#128722;</i>
-            <i class="search-icon">&#128269;</i>
-            <i class="user-icon">&#128100;</i>
+        <div class="menu">
+            <a href="index.html">Home</a>
+            <a href="index.html">Courses</a>
+            <a href="index.html">about</a>
+            <a href="index.html">Support</a>
+            <a href="index.html">Network</a>
         </div>
     </div>
     <div>
-    <main>
-     <div class="container">
-        <div class="product-image">
-            <img id="main-image" src="https://www.naukri.com/web-stories/images/ai-impact/img1.webp"width="400px" height="533px"  alt="Product Image">
-          
-        </div>
-        <div class="product-preview">
-            <img src="https://www.naukri.com/web-stories/images/ai-impact/img1.webp"class="active" alt="Preview 1" onclick="changeImage(this)">
-            <img src="https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIyLTExL3JtNTk5LXJlbWl4LTM5Yi5qcGc.jpg" alt="Preview 2" onclick="changeImage(this)">
-            <img src="https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIyLTEwL3JtNTk5LXJlbWl4LTAyYi1sOWQzYWJubS5qcGc.jpg" alt="Preview 3" onclick="changeImage(this)">
-            <img src="https://e0.pxfuel.com/wallpapers/696/858/desktop-wallpaper-machine-learning-artificial-intelligence-phone.jpg" alt="Preview 4" onclick="changeImage(this)">
-        </div>
-    </div>
-    <div style=" align-content: center;">
-        <div class="product-details">
-            <h1>Product Name:  <span style="font-weight: 300;">Intelligent Automation Suite</span></h1>
-            <span  class="price">Overview</span><p  class="description">The Intelligent Automation Suite is designed to streamline business processes through advanced AI technologies. This all-in-one solution enhances efficiency, reduces operational costs, and empowers teams to focus on strategic initiatives rather than repetitive tasks.</p>
-            <span class="price">Key Features</span>         
-            <p >Automated Workflows:<span class="description">Create custom workflows that automate routine tasks, ensuring consistency and accuracy across operations.</span></p>
-            <p >AI-Powered Insights: <span class="description"> Leverage machine learning algorithms to analyze data and generate actionable insights for better decision-making.</span></p>
-            <p >User-Friendly Interface:<span class="description">  Intuitive design allows users of all skill levels to navigate and utilize the suite effectively without extensive training.</span></p>
+            <main>
+            <div class="container">
+                <div class="product-image">
+                    <img id="main-image" src="https://www.naukri.com/web-stories/images/ai-impact/img1.webp"width="400px" height="533px"  alt="Product Image">
+                
+                </div>
+                <div class="product-preview">
+                    <img src="https://www.naukri.com/web-stories/images/ai-impact/img1.webp"class="active" alt="Preview 1" onclick="changeImage(this)">
+                    <img src="https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIyLTExL3JtNTk5LXJlbWl4LTM5Yi5qcGc.jpg" alt="Preview 2" onclick="changeImage(this)">
+                    <img src="https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIyLTEwL3JtNTk5LXJlbWl4LTAyYi1sOWQzYWJubS5qcGc.jpg" alt="Preview 3" onclick="changeImage(this)">
+                    <img src="https://e0.pxfuel.com/wallpapers/696/858/desktop-wallpaper-machine-learning-artificial-intelligence-phone.jpg" alt="Preview 4" onclick="changeImage(this)">
+                </div>
+            </div>
+            <div style=" align-content: center;">
+                <div class="product-details">
+                    <h1>Product Name:  <span style="font-weight: 300;">Intelligent Automation Suite</span></h1>
+                    <span  class="price">Overview</span><p  class="description">The Intelligent Automation Suite is designed to streamline business processes through advanced AI technologies. This all-in-one solution enhances efficiency, reduces operational costs, and empowers teams to focus on strategic initiatives rather than repetitive tasks.</p>
+                    <span class="price">Key Features</span>         
+                    <p >Automated Workflows:<span class="description">Create custom workflows that automate routine tasks, ensuring consistency and accuracy across operations.</span></p>
+                    <p >AI-Powered Insights: <span class="description"> Leverage machine learning algorithms to analyze data and generate actionable insights for better decision-making.</span></p>
+                    <p >User-Friendly Interface:<span class="description">  Intuitive design allows users of all skill levels to navigate and utilize the suite effectively without extensive training.</span></p>
 
-            <p >Integration Capabilities: <span class="description"> Seamlessly integrates with existing software systems, enhancing functionality without disrupting current workflows.</span></p>
+                    <p >Integration Capabilities: <span class="description"> Seamlessly integrates with existing software systems, enhancing functionality without disrupting current workflows.</span></p>
 
-            <p >AI-Powered Insights: <span class="description"> Leverage machine learning algorithms to analyze data and generate actionable insights for better decision-making.</span></p>
+                    <p >AI-Powered Insights: <span class="description"> Leverage machine learning algorithms to analyze data and generate actionable insights for better decision-making.</span></p>
 
-            <button class="add-to-cart">Contact us</button>
-        </div>
-    </div>
-    </main>
+                    <button class="add-to-cart">Contact us</button>
+                </div>
+            </div>
+            </main>
     <section class="product-description">
         <h2>Technical Specifications</h2>
         <ul>
@@ -443,21 +609,27 @@
         <p><em>Current date: Friday, January 24, 2025, 12 PM IST</em></p>
     </section>
 
+   
     <section class="reviews-container">
         <h2>User Reviews</h2>
-        <button class="carousel-btn prev-btn">❮</button>
-        <div class="reviews-carousel">
+    <swiper-container class="reviews-carousel">
+        
+        <swiper-slide> 
             <blockquote> 
-                <p>"The Intelligent Automation Suite has transformed our operations. We've seen a 40% increase in productivity since implementation!" - Jane Doe, Operations Manager</p>
+            <p>"The Intelligent Automation Suite has transformed our operations. We've seen a 40% increase in productivity since implementation!" - Jane Doe, Operations Manager</p>
             </blockquote>
+        </swiper-slide>
+        <swiper-slide>
             <blockquote>
                 <p>"The insights generated by the AI tools have been invaluable for our strategic planning." - John Smith, CEO</p>
             </blockquote>
+        </swiper-slide>
+        <swiper-slide>
             <blockquote>
                 <p>"This suite has drastically reduced repetitive tasks and allowed my team to focus on innovation. Highly recommend!" - Emily Carter, Product Manager</p>
             </blockquote>
-        </div>
-        <button class="carousel-btn next-btn">❯</button>
+        </swiper-slide>
+      </swiper-container>
     </section>
     <footer class="footer">
         <div class="footer-container">
@@ -499,7 +671,7 @@
    
     
    
-    <script>
+    <!-- <script>
         function changeImage(element) {
             const mainImage = document.getElementById('main-image');
             const previews = document.querySelectorAll('.product-preview img');
@@ -521,6 +693,15 @@
                 carousel.scrollBy({ left: -carousel.offsetWidth, behavior: 'smooth' });
             });
 
+    </script> -->
+    <script>
+        const burgerMenu = document.getElementById("burger-menu");
+        const dropdownContent = document.querySelector(".dropdown-content");
+    
+        burgerMenu.addEventListener("click", () => {
+            dropdownContent.style.display =
+                dropdownContent.style.display === "flex" ? "none" : "flex";
+        });
     </script>
 </body>
 </html>
